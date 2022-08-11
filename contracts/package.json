@@ -41,6 +41,7 @@
         "typechain": "^8.0.0"
     },
     "dependencies": {
+        "@openzeppelin/contracts": "^4.6.0",
         "@semaphore-protocol/contracts": "0.2.0"
     },
     "config": {
