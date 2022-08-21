@@ -1,7 +1,8 @@
 import "@nomiclabs/hardhat-ethers"
 import "@nomiclabs/hardhat-waffle"
 import "@typechain/hardhat"
-import { config as dotenvConfig } from "dotenv"
+// import { config as dotenvConfig } from "dotenv"
+import * as dotenv from "dotenv"
 import "hardhat-dependency-compiler"
 import "hardhat-gas-reporter"
 import { HardhatUserConfig } from "hardhat/config"
@@ -10,10 +11,10 @@ import { resolve } from "path"
 import "solidity-coverage"
 import { config } from "./package.json"
 import "./tasks/accounts"
-import "./tasks/deploy-events"
+import "./tasks/deploy-gateway"
 import "./tasks/deploy-verifier"
-
-dotenvConfig({ path: resolve(__dirname, "../../.env") })
+dotenv.config()
+// dotenvConfig({ path: resolve(__dirname, "../../.env") })
 
 function getNetworks(): NetworksUserConfig {
     if (process.env.INFURA_API_KEY && process.env.ETHEREUM_PRIVATE_KEY) {
@@ -57,7 +58,17 @@ const hardhatConfig: HardhatUserConfig = {
         hardhat: {
             chainId: 1337
         },
-        ...getNetworks()
+        harmonytestnet: {
+            url: "https://api.s0.b.hmny.io",
+            chainId: 1666700000,
+            accounts: [`0x${process.env.ETHEREUM_PRIVATE_KEY}`]
+        },
+        harmonydevnet: {
+            url: "https://api.s0.ps.hmny.io/",
+            chainId: 1666900000,
+            accounts: [`0x${process.env.ETHEREUM_PRIVATE_KEY}`]
+        }
+        // ...getNetworks()
     },
     gasReporter: {
         currency: "USD",
