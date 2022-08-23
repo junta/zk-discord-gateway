@@ -20,7 +20,7 @@ module.exports = {
         const provider = new ethers.providers.JsonRpcProvider("https://api.s0.ps.hmny.io/", 1666900000)
         const wallet = new ethers.Wallet(process.env.PRIVATE_KEY, provider)
         // TODO: should be extracted as constants
-        const contractAddress = "0x77e6Bd5c1988d8d766698F9CeEa5C24559b999f8"
+        const contractAddress = "0x708f59359530fc46bdc18f62C30e9Ee1970c19d0"
         const contract = new ethers.Contract(contractAddress, ZkGateway.abi, wallet)
 
         const tokenAddress = interaction.options.getString("address")
@@ -41,7 +41,7 @@ module.exports = {
         }
 
         try {
-            const transaction = await contract.createGateway(id, tokenAddress)
+            const transaction = await contract.createGateway(id, tokenAddress, interaction.guild.id, roleName)
 
             const result = await transaction.wait()
             console.log(result)

@@ -4,6 +4,7 @@ import { Contract, providers, utils, Wallet } from "ethers"
 import express from "express"
 import { resolve } from "path"
 import { abi as contractAbi } from "../contracts/build/contracts/contracts/ZkGateway.sol/ZkGateway.json"
+const axios = require("axios").default
 
 if (typeof process.env.CONTRACT_ADDRESS !== "string") {
     throw new Error("Please, define CONTRACT_ADDRESS in your .env file")
@@ -21,6 +22,7 @@ const ethereumPrivateKey = process.env.ETHEREUM_PRIVATE_KEY
 const ethereumURL = process.env.ETHEREUM_URL
 const contractAddress = process.env.CONTRACT_ADDRESS
 const port = 3000
+const discordApiURL = "https://discord.com/api/v10/"
 
 const app = express()
 
@@ -66,6 +68,16 @@ app.post("/add-member", async (req, res) => {
 
         res.status(500).end()
     }
+})
+
+app.get("/", async () => {
+    const authValue = "Bot " + process.env.DISCORD_TOKEN
+
+    const response = await axios.get("https://discord.com/api/v10/guilds/721174434060304384", {
+        headers: { Authorization: authValue }
+    })
+
+    console.log(response)
 })
 
 app.listen(port, () => {
