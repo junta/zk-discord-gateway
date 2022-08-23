@@ -5,7 +5,7 @@ import { CacheProvider, EmotionCache } from "@emotion/react";
 import { ThemeProvider, CssBaseline } from "@mui/material";
 import { SnackbarProvider } from "notistack";
 import createEmotionCache from "../utilities/createEmotionCache";
-import lightTheme from "../styles/theme/light";
+// import lightTheme from "../styles/theme/light";
 import { createClient, configureChains, chain, WagmiConfig } from "wagmi";
 import { publicProvider } from "wagmi/providers/public";
 
@@ -46,10 +46,10 @@ function MyApp(props: AppPropsWithLayout) {
                             content="initial-scale=1, width=device-width"
                         />
                     </Head>
-                    <ThemeProvider theme={lightTheme}>
-                        <CssBaseline />
-                        <Component {...pageProps} />
-                    </ThemeProvider>
+                    {/* <ThemeProvider theme={lightTheme}> */}
+                    <CssBaseline />
+                    <Component {...pageProps} />
+                    {/* </ThemeProvider> */}
                 </CacheProvider>
             </SnackbarProvider>
         </WagmiConfig>

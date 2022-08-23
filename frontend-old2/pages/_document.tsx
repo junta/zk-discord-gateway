@@ -1,7 +1,6 @@
 import * as React from "react";
 import Document, { Html, Head, Main, NextScript } from "next/document";
 import createEmotionServer from "@emotion/server/create-instance";
-import theme from "../styles/theme/light";
 import createEmotionCache from "../utilities/createEmotionCache";
 
 export default class MyDocument extends Document {
@@ -10,21 +9,13 @@ export default class MyDocument extends Document {
             <Html lang="en">
                 <Head>
                     {/* PWA primary color */}
-                    <meta
-                        name="theme-color"
-                        content={theme.palette.primary.main}
-                    />
+
                     <link
                         rel="stylesheet"
                         href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
                     />
                 </Head>
-                <body
-                    style={{
-                        background:
-                            "linear-gradient(90deg, rgba(223,191,231,0.8758096988795518) 0%, rgba(121,9,121,1) 50%, rgba(62,51,62,1) 100%)",
-                    }}
-                >
+                <body>
                     <Main />
                     <NextScript />
                 </body>
