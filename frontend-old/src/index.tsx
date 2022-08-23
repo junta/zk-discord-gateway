@@ -78,7 +78,7 @@ function App() {
             setContract(new Contract(contractAddress, Gateway.abi, ethersProvider.getSigner()))
             const guildId = query.get("guildId")
 
-            const res = await fetch(`${discordApiURL}/guilds/${guildId}`, {
+            const res = await fetch(`${discordApiURL}guilds/${guildId}`, {
                 method: "GET",
                 headers: { Authorization: `Bot ${process.env.discordApiURL}` }
             })

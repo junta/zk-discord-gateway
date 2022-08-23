@@ -6,11 +6,11 @@
 import { ethers } from "hardhat"
 
 async function main() {
-    const address = "0xBA6BfBa894B5cAF04c3462A5C8556fFBa4de6782"
+    const address = "0xF758A89A9EbA1F6d74d32d9C00edC78E8e27fC6a"
 
     const ZkGateway = await ethers.getContractAt("ZkGateway", address)
-    const verifier = await ZkGateway.verifier()
-    console.log(verifier)
+    const gateway = await ZkGateway.gateways("721174434060304384")
+    console.log(Number(gateway.groupId))
 }
 // We recommend this pattern to be able to use async/await everywhere
 // and properly handle errors.

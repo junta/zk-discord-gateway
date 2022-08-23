@@ -3,7 +3,7 @@ import { config as dotenvConfig } from "dotenv"
 import { Contract, providers, utils, Wallet } from "ethers"
 import express from "express"
 import { resolve } from "path"
-import { abi as contractAbi } from "../contracts/build/contracts/contracts/Events.sol/Events.json"
+import { abi as contractAbi } from "../contracts/build/contracts/contracts/ZkGateway.sol/ZkGateway.json"
 
 dotenvConfig({ path: resolve(__dirname, "../../.env") })
 

@@ -8,6 +8,9 @@ module.exports = {
         .setDescription("Setup with ZK-NFT-Gateway with ERC721 token address")
         .addStringOption((option) =>
             option.setName("address").setDescription("ERC721 address to set as gateway").setRequired(true)
+        )
+        .addStringOption((option) =>
+            option.setName("role").setDescription("role name given to authorized users").setRequired(true)
         ),
     async execute(interaction) {
         const SNARK_LIMIT = ethers.BigNumber.from(
@@ -21,6 +24,7 @@ module.exports = {
         const contract = new ethers.Contract(contractAddress, ZkGateway.abi, wallet)
 
         const tokenAddress = interaction.options.getString("address")
+        const roleName = interaction.options.getString("role")
 
         // TODO: check valid contract address
 

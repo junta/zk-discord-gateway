@@ -5,7 +5,7 @@
 // Runtime Environment's members available in the global scope.
 import { ethers } from "hardhat"
 
-const address = "0xBA6BfBa894B5cAF04c3462A5C8556fFBa4de6782"
+const address = "0xF758A89A9EbA1F6d74d32d9C00edC78E8e27fC6a"
 
 async function main() {
     const ZkGateway = await ethers.getContractAt("ZkGateway", address)
