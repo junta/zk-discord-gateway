@@ -15,7 +15,7 @@ contract ZkGateway is SemaphoreCore, SemaphoreGroups {
 
     struct Gateway {
         uint256 groupId;
-        string roleName;
+        uint256 roleId;
         address adminAddress;
         address contractAddress;
         uint256 createdAt;
@@ -28,14 +28,14 @@ contract ZkGateway is SemaphoreCore, SemaphoreGroups {
         verifier = _verifier;
     }
 
-    function createGateway(bytes32 name, address contractAddress, uint256 guildId, string calldata roleName) public returns (uint256) {
+    function createGateway(bytes32 name, address contractAddress, uint256 guildId, uint256 roleId) public returns (uint256) {
         uint256 groupId = hashGatewayName(name);
 
         _createGroup(groupId, treeDepth, 0);
 
         gateways[guildId] = Gateway({
             groupId: groupId,
-            roleName: roleName,
+            roleId: roleId,
             adminAddress: msg.sender,
             contractAddress: contractAddress,
             createdAt: block.timestamp
@@ -56,7 +56,7 @@ contract ZkGateway is SemaphoreCore, SemaphoreGroups {
         uint256 groupId,
         uint256[8] calldata proof
     ) public {
-        uint256 root = groups[groupId].root;
+        uint256 root = getRoot(groupId);
 
         _verifyProof(signal, root, nullifierHash, groupId, proof, verifier);
 

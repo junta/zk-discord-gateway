@@ -1,15 +1,12 @@
 {
-    "name": "semaphore-boilerplate",
+    "name": "zk-discord-gateway",
     "description": "A simple DApp to use as a starting point for your project.",
     "license": "MIT",
-    "repository": "git@github.com:semaphore-protocol/boilerplate.git",
-    "homepage": "https://github.com/semaphore-protocol/boilerplate",
-    "bugs": "https://github.com/semaphore-protocol/boilerplate/issues",
+    "repository": "git@github.com:junta/zk-discord-gateway.git",
+    "homepage": "https://github.com/junta/zk-discord-gateway",
+    "bugs": "https://github.com/junta/zk-discord-gateway/issues",
     "private": true,
     "scripts": {
-        "start:contracts": "yarn workspace contracts start",
-        "start:relay": "yarn workspace relay start",
-        "start:web-app": "yarn workspace web-app start",
         "lint": "eslint . --ext .js,.ts",
         "prettier": "prettier -c .",
         "prettier:write": "prettier -w ."
@@ -19,8 +16,7 @@
         "typescript",
         "monorepo",
         "zero-knowledge",
-        "semaphore",
-        "boilerplate"
+        "semaphore"
     ],
     "workspaces": [
         "apps/*"

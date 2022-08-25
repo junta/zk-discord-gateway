@@ -6,7 +6,7 @@
 import { ethers } from "hardhat"
 
 async function main() {
-    const address = "0x708f59359530fc46bdc18f62C30e9Ee1970c19d0"
+    const address = "0x6E9355354c162252E473CFf3e5902603883d93A5"
 
     const ZkGateway = await ethers.getContractAt("ZkGateway", address)
 
@@ -17,10 +17,10 @@ async function main() {
     // console.log(transaction)
 
     const transaction = await ZkGateway.createGateway(
-        ethers.utils.formatBytes32String("baa"),
+        ethers.utils.formatBytes32String("baae"),
         "0x4B7099FD879435a087C364aD2f9E7B3f94d20bBe",
         "721174434060304384",
-        "NFTHolder"
+        "1002209522774974464"
     )
 
     const result = await transaction.wait()

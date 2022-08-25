@@ -2,6 +2,10 @@ const { SlashCommandBuilder } = require("discord.js")
 const { ethers } = require("ethers")
 const ZkGateway = require("../../contracts/build/contracts/contracts/ZkGateway.sol/ZkGateway.json")
 
+const contractAddress = "0x6E9355354c162252E473CFf3e5902603883d93A5"
+const providerURL = "https://api.s0.ps.hmny.io/"
+const chainId = 1666900000
+
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("setup")
@@ -10,38 +14,30 @@ module.exports = {
             option.setName("address").setDescription("ERC721 address to set as gateway").setRequired(true)
         )
         .addStringOption((option) =>
-            option.setName("role").setDescription("role name given to authorized users").setRequired(true)
+            option.setName("role").setDescription("role ID given to authorized users").setRequired(true)
         ),
     async execute(interaction) {
-        const SNARK_LIMIT = ethers.BigNumber.from(
-            "21888242871839275222246405745257275088548364400416034343698204186575808495617"
-        )
-
-        const provider = new ethers.providers.JsonRpcProvider("https://api.s0.ps.hmny.io/", 1666900000)
+        const provider = new ethers.providers.JsonRpcProvider(providerURL, chainId)
         const wallet = new ethers.Wallet(process.env.PRIVATE_KEY, provider)
-        // TODO: should be extracted as constants
-        const contractAddress = "0x708f59359530fc46bdc18f62C30e9Ee1970c19d0"
+
         const contract = new ethers.Contract(contractAddress, ZkGateway.abi, wallet)
 
         const tokenAddress = interaction.options.getString("address")
-        const roleName = interaction.options.getString("role")
+        const roleId = interaction.options.getString("role")
 
-        // TODO: check valid contract address
+        // TODO: add validation of NFT contract address
+        const isAddress = ethers.utils.isAddress(tokenAddress)
+        if (!isAddress) {
+            interaction.reply("Contract address input is not valid")
+            return
+        }
 
         await interaction.reply("Setup is ongoing")
 
-        // TODO: optimize not to use ramdom number
-        let id
-        while (id === undefined) {
-            const candidate = ethers.BigNumber.from(ethers.utils.randomBytes(32))
-            if (candidate.lt(SNARK_LIMIT)) {
-                id = candidate
-                break
-            }
-        }
+        const id = ethers.utils.formatBytes32String(process.env.GUILD_ID)
 
         try {
-            const transaction = await contract.createGateway(id, tokenAddress, interaction.guild.id, roleName)
+            const transaction = await contract.createGateway(id, tokenAddress, interaction.guild.id, roleId)
 
             const result = await transaction.wait()
             console.log(result)

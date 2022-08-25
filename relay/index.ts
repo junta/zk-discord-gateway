@@ -2,27 +2,22 @@ import cors from "cors"
 import "dotenv/config"
 import { Contract, providers, utils, Wallet } from "ethers"
 import express from "express"
-import { resolve } from "path"
 import { abi as contractAbi } from "../contracts/build/contracts/contracts/ZkGateway.sol/ZkGateway.json"
 const axios = require("axios").default
-
-if (typeof process.env.CONTRACT_ADDRESS !== "string") {
-    throw new Error("Please, define CONTRACT_ADDRESS in your .env file")
-}
-
-if (typeof process.env.ETHEREUM_URL !== "string") {
-    throw new Error("Please, define ETHEREUM_URL in your .env file")
-}
 
 if (typeof process.env.ETHEREUM_PRIVATE_KEY !== "string") {
     throw new Error("Please, define ETHEREUM_PRIVATE_KEY in your .env file")
 }
 
+if (typeof process.env.DISCORD_TOKEN !== "string") {
+    throw new Error("Please, define DISCORD_TOKEN in your .env file")
+}
+
 const ethereumPrivateKey = process.env.ETHEREUM_PRIVATE_KEY
-const ethereumURL = process.env.ETHEREUM_URL
-const contractAddress = process.env.CONTRACT_ADDRESS
+const ethereumURL = "https://api.s0.ps.hmny.io"
+const contractAddress = "0x6E9355354c162252E473CFf3e5902603883d93A5"
 const port = 3000
-const discordApiURL = "https://discord.com/api/v10/"
+const discordApiURL = "https://discord.com/api/v10"
 
 const app = express()
 
@@ -33,18 +28,30 @@ const provider = new providers.JsonRpcProvider(ethereumURL)
 const signer = new Wallet(ethereumPrivateKey, provider)
 const contract = new Contract(contractAddress, contractAbi, signer)
 
-app.post("/post-review", async (req, res) => {
-    const { review, nullifierHash, groupId, solidityProof } = req.body
+app.post("/verify-membership", async (req, res) => {
+    const { signal, nullifierHash, groupId, solidityProof, guildId, userId, roleId } = req.body
 
     try {
-        const transaction = await contract.postReview(
-            utils.formatBytes32String(review),
+        const transaction = await contract.verifyMembership(
+            utils.formatBytes32String(signal),
             nullifierHash,
             groupId,
             solidityProof
         )
 
         await transaction.wait()
+
+        const roleApiURL = discordApiURL + "/guilds/" + guildId + "/members/" + userId + "/roles/" + roleId
+        const authValue = "Bot " + process.env.DISCORD_TOKEN
+        const response = await axios.put(
+            roleApiURL,
+            {},
+            {
+                headers: { Authorization: authValue }
+            }
+        )
+
+        // console.log(response)
 
         res.status(200).end()
     } catch (error: any) {
@@ -68,16 +75,6 @@ app.post("/add-member", async (req, res) => {
 
         res.status(500).end()
     }
-})
-
-app.get("/", async () => {
-    const authValue = "Bot " + process.env.DISCORD_TOKEN
-
-    const response = await axios.get("https://discord.com/api/v10/guilds/721174434060304384", {
-        headers: { Authorization: authValue }
-    })
-
-    console.log(response)
 })
 
 app.listen(port, () => {

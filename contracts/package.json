@@ -43,7 +43,8 @@
     },
     "dependencies": {
         "@openzeppelin/contracts": "^4.6.0",
-        "@semaphore-protocol/contracts": "0.2.0"
+        "@semaphore-protocol/contracts": "0.2.0",
+        "@semaphore-protocol/group": "^2.0.0"
     },
     "config": {
         "solidity": {
