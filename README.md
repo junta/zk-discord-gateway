@@ -11,7 +11,9 @@ Demo Video
 ## Competitors
 
 Collab.land
+
 https://collab.land/
+
 Popular bot service to integrate token-gate into Discord or Telegram. But issue is community members must reveal their wallet address to Discord Inc and the server owner.
 
 ### The project has four main folders within root directory:
@@ -72,8 +74,10 @@ The relay folder contains Backend API built with Express.js so that users can jo
 ## Deployed Contracts
 
 Harmony Devnet
-ZkGateway: 0x6E9355354c162252E473CFf3e5902603883d93A5
-Verifier20: 0x873c4bf04E3569bba917b85Bf3fE930DEaF87eAF
-MockERC721: 0x4B7099FD879435a087C364aD2f9E7B3f94d20bBe
+| Contract | Address |
+| ----------- | ----------- |
+| ZkGateway | 0x6E9355354c162252E473CFf3e5902603883d93A5 |
+| Verifier20 | 0x873c4bf04E3569bba917b85Bf3fE930DEaF87eAF |
+| MockERC721 | 0x4B7099FD879435a087C364aD2f9E7B3f94d20bBe |
 
 ## Screenshots
