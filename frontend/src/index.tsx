@@ -24,7 +24,7 @@ function App() {
     const [_guildId, setGuildId] = useState<string>("")
     const [_identityCreated, setIdentityCreated] = useState<boolean>(false)
 
-    const contractAddress = "0x6E9355354c162252E473CFf3e5902603883d93A5"
+    const contractAddress = "0x19b1b1FeDBA133523Aa826Ec62bda6435B14D9Fb"
     const RELAY_URL = "http://localhost:3000"
 
     function useQuery() {

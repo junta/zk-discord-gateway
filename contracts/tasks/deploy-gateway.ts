@@ -8,6 +8,7 @@ task("deploy:gateway", "Deploy an ZkGateway contract")
     .setAction(async ({ logs, treeDepth, verifierAddress }, { ethers }) => {
         const poseidonABI = poseidonContract.generateABI(2)
         const poseidonBytecode = poseidonContract.createCode(2)
+        const relayerAddress = "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266"
 
         const [signer] = await ethers.getSigners()
 
@@ -39,7 +40,7 @@ task("deploy:gateway", "Deploy an ZkGateway contract")
             }
         })
 
-        const contract = await FactoryContract.deploy(treeDepth, verifierAddress)
+        const contract = await FactoryContract.deploy(treeDepth, verifierAddress, relayerAddress)
 
         await contract.deployed()
 

@@ -12,6 +12,7 @@ contract ZkGateway is SemaphoreCore, SemaphoreGroups {
 
     uint8 public treeDepth;
     IVerifier public verifier;
+    address public relayer;
 
     struct Gateway {
         uint256 groupId;
@@ -23,9 +24,10 @@ contract ZkGateway is SemaphoreCore, SemaphoreGroups {
 
     mapping(uint256 => Gateway) public gateways;
 
-    constructor(uint8 _treeDepth, IVerifier _verifier) {
+    constructor(uint8 _treeDepth, IVerifier _verifier, address _relayer) {
         treeDepth = _treeDepth;
         verifier = _verifier;
+        relayer = _relayer;
     }
 
     function createGateway(bytes32 name, address contractAddress, uint256 guildId, uint256 roleId) public returns (uint256) {
@@ -47,6 +49,7 @@ contract ZkGateway is SemaphoreCore, SemaphoreGroups {
     }
 
     function addMember(uint256 groupId, uint256 identityCommitment) public {
+        require(relayer == msg.sender, "msg.sender is not relayer");
         _addMember(groupId, identityCommitment);
     }
 

@@ -15,7 +15,7 @@ if (typeof process.env.DISCORD_TOKEN !== "string") {
 
 const ethereumPrivateKey = process.env.ETHEREUM_PRIVATE_KEY
 const ethereumURL = "https://api.s0.ps.hmny.io"
-const contractAddress = "0x6E9355354c162252E473CFf3e5902603883d93A5"
+const contractAddress = "0x19b1b1FeDBA133523Aa826Ec62bda6435B14D9Fb"
 const port = 3000
 const discordApiURL = "https://discord.com/api/v10"
 

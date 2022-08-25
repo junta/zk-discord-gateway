@@ -2,9 +2,12 @@ const { SlashCommandBuilder } = require("discord.js")
 const { ethers } = require("ethers")
 const ZkGateway = require("../../contracts/build/contracts/contracts/ZkGateway.sol/ZkGateway.json")
 
-const contractAddress = "0x6E9355354c162252E473CFf3e5902603883d93A5"
+const contractAddress = "0x19b1b1FeDBA133523Aa826Ec62bda6435B14D9Fb"
 const providerURL = "https://api.s0.ps.hmny.io/"
 const chainId = 1666900000
+const SNARK_LIMIT = ethers.BigNumber.from(
+    "21888242871839275222246405745257275088548364400416034343698204186575808495617"
+)
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -34,7 +37,15 @@ module.exports = {
 
         await interaction.reply("Setup is ongoing")
 
-        const id = ethers.utils.formatBytes32String(process.env.GUILD_ID)
+        // const id = ethers.utils.formatBytes32String(process.env.GUILD_ID)
+        let id
+        while (id === undefined) {
+            const candidate = ethers.BigNumber.from(ethers.utils.randomBytes(32))
+            if (candidate.lt(SNARK_LIMIT)) {
+                id = candidate
+                break
+            }
+        }
 
         try {
             const transaction = await contract.createGateway(id, tokenAddress, interaction.guild.id, roleId)
