@@ -81,3 +81,12 @@ Harmony Devnet
 | MockERC721 | 0x4B7099FD879435a087C364aD2f9E7B3f94d20bBe |
 
 ## Screenshots
+
+Setup
+![setup](https://raw.githubusercontent.com/junta/zk-discord-gateway/b5257cba2d8fb96cbdd6e376742595707774dd05/screenshots/discord-setup.png)
+
+Setup done
+![setup-done](https://raw.githubusercontent.com/junta/zk-discord-gateway/b5257cba2d8fb96cbdd6e376742595707774dd05/screenshots/discord-setup-done.png)
+
+Frontend
+![setup-done](https://raw.githubusercontent.com/junta/zk-discord-gateway/b5257cba2d8fb96cbdd6e376742595707774dd05/screenshots/frontend.png)
