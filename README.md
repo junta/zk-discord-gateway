@@ -82,11 +82,15 @@ Harmony Devnet
 
 ## Screenshots
 
-Setup
+Setup command
 ![setup](https://raw.githubusercontent.com/junta/zk-discord-gateway/b5257cba2d8fb96cbdd6e376742595707774dd05/screenshots/discord-setup.png)
 
-Setup done
+Done setup
 ![setup-done](https://raw.githubusercontent.com/junta/zk-discord-gateway/b5257cba2d8fb96cbdd6e376742595707774dd05/screenshots/discord-setup-done.png)
 
+Verify command
+![setup-done](https://raw.githubusercontent.com/junta/zk-discord-gateway/b5257cba2d8fb96cbdd6e376742595707774dd05/screenshots/discord-verify.png)
+
 Frontend
-![setup-done](https://raw.githubusercontent.com/junta/zk-discord-gateway/b5257cba2d8fb96cbdd6e376742595707774dd05/screenshots/frontend.png)
+
+![frontend](https://raw.githubusercontent.com/junta/zk-discord-gateway/b5257cba2d8fb96cbdd6e376742595707774dd05/screenshots/frontend.png)
