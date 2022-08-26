@@ -59,6 +59,8 @@ The relay folder contains Backend API built with Express.js so that users can jo
 **Server Owner**
 
 1. Invite discord bot to your server. \*bot needs MANAGE_ROLES permission on your server.
+   https://discord.com/api/oauth2/authorize?client_id=1007172504059646003&permissions=268435456&scope=bot applications.commands
+
 2. Register role you give through zk-discord-NFT-gateway
 3. Type /setup and pass NFT contract address and role ID as parameters.
    (In the background, the bot creates Semaphore group for your server.)
@@ -77,7 +79,7 @@ The relay folder contains Backend API built with Express.js so that users can jo
 Harmony Devnet
 | Contract | Address |
 | ----------- | ----------- |
-| ZkGateway | 0x6E9355354c162252E473CFf3e5902603883d93A5 |
+| ZkGateway | 0x19b1b1FeDBA133523Aa826Ec62bda6435B14D9Fb |
 | Verifier20 | 0x873c4bf04E3569bba917b85Bf3fE930DEaF87eAF |
 | MockERC721 | 0x4B7099FD879435a087C364aD2f9E7B3f94d20bBe |
 
