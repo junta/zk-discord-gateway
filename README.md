@@ -7,6 +7,7 @@ It is quite common introducing NFT gateway to create a closed access channel or 
 zk-discord-NFT-gateway allows users to pass the NFT gateway in discord server without revealing their wallet address.
 
 Demo Video
+https://youtu.be/lWkFDORzidw
 
 ## Competitors
 
@@ -25,11 +26,11 @@ Popular bot service to integrate token-gate into Discord or Telegram. But issue 
 
 #### contracts
 
-The contracts folder contains MockERC721 and ZkGateway contracts.
+The contracts folder contains MockERC721 and ZkGateway(inheriting SemaphoreCore and SemaphoreGroups) contracts.
 
 #### discordbot
 
-The discordbot folder contains codes defining bot behaivior written in Javascript
+The discordbot folder contains codes defining bot behavior written in Javascript
 
 #### frontend
 
@@ -37,7 +38,7 @@ The Frontend folder contains frontend files built with React.js and chakra-ui.
 
 #### relay
 
-The relay folder contains Backend API built with Express.js so that users can join group anonymously
+The relay folder contains Backend API built with Express.js so that users can join Semaphore group anonymously.
 
 ## Start the app
 
@@ -60,7 +61,7 @@ The relay folder contains Backend API built with Express.js so that users can jo
 1. Invite discord bot to your server. \*bot needs MANAGE_ROLES permission on your server.
 2. Register role you give through zk-discord-NFT-gateway
 3. Type /setup and pass NFT contract address and role ID as parameters.
-   (In background, the bot creates Semaphore group for your server.)
+   (In the background, the bot creates Semaphore group for your server.)
 
 **Users**
 
