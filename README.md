@@ -17,7 +17,9 @@ https://collab.land/
 
 Popular bot service to integrate token-gate into Discord or Telegram. But issue is community members must reveal their wallet address to Discord Inc and the server owner.
 
-### The project has four main folders within root directory:
+## Folder structure
+
+The project has four main folders within root directory:
 
 -   contracts/
 -   discordbot/
@@ -30,7 +32,7 @@ The contracts folder contains MockERC721 and ZkGateway(inheriting SemaphoreCore 
 
 #### discordbot
 
-The discordbot folder contains codes defining bot behavior written in Javascript
+The discordbot folder contains codes defining bot behavior written in Javascript/discordjs
 
 #### frontend
 
@@ -59,11 +61,11 @@ The relay folder contains Backend API built with Express.js so that users can jo
 **Server Owner**
 
 1. Invite discord bot to your server. \*bot needs MANAGE_ROLES permission on your server.
-   https://discord.com/api/oauth2/authorize?client_id=1007172504059646003&permissions=268435456&scope=bot applications.commands
+   https://discord.com/oauth2/authorize?client_id=1007172504059646003&permissions=268435456&scope=bot%20applications.commands
 
-2. Register role you give through zk-discord-NFT-gateway
+2. Register role you give through zk-discord-NFT-gateway(Make sure zk-gateway role has higher permission than the role you give to community members.)
 3. Type /setup and pass NFT contract address and role ID as parameters.
-   (In the background, the bot creates Semaphore group for your server.)
+   (In the background, the bot creates Semaphore group for your discord server.)
 
 **Users**
 
