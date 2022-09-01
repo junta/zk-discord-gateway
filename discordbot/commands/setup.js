@@ -31,7 +31,12 @@ module.exports = {
         // TODO: add validation of NFT contract address
         const isAddress = ethers.utils.isAddress(tokenAddress)
         if (!isAddress) {
-            interaction.reply("Contract address input is not valid")
+            interaction.reply("Error: Contract address input is not valid")
+            return
+        }
+
+        if (isNaN(Number(roleId))) {
+            interaction.reply("Error: Role parameter must be Role ID number")
             return
         }
 
