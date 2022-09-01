@@ -68,6 +68,8 @@ The relay folder contains Backend API built with Express.js so that users can jo
 -   Make sure zk-gateway role has higher permission than the role you give to community members. By default, zk-gateway role will start with lower permissions than needed. To fix this, drag and drop your bots role above the roles you're trying to give on the Server Settings > Roles.
     ![role-setting](https://raw.githubusercontent.com/junta/zk-discord-gateway/main/screenshots/role-setting.png)
 
+-   To get role ID: https://ozonprice.com/blog/discord-get-role-id/
+
 3. Type /setup and pass NFT contract address and role ID as parameters.
    (In the background, the bot creates Semaphore group for your discord server.)
 
