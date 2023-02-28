@@ -1,5 +1,7 @@
 # zk-discord-NFT-gateway
 
+Final project submission for https://zku.one/ cohort 4.
+
 ## Overview
 
 It is quite common introducing NFT gateway to create a closed access channel or give a certain role to community members only owning a certain NFT on Discord server.
